@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly projectid=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/project/project-id)
+readonly projectid=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/project/project-id)
 
 echo -e "HTTP/1.1 200 OK\n\nhello, world"
 
