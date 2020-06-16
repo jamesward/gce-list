@@ -2,7 +2,5 @@
 
 readonly projectid=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/project/project-id)
 
-echo -e "HTTP/1.1 200 OK\n\n$projectid"
-
 readonly result=$(gcloud compute instances list --project=$projectid --format='value(name)' 2>&1)
 echo -e "HTTP/1.1 200 OK\n\n$result"
