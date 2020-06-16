@@ -4,10 +4,5 @@ readonly projectid=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google
 
 echo -e "HTTP/1.1 200 OK\n\n$projectid"
 
-#if result=$(gcloud compute instances list --project=$projectid --format='value(name)' 2>&1); then
-#  length=$(echo $result | wc -c)
-#  echo -e "HTTP/1.1 200 OK\nContent-Length: $length\n\n$result"
-#else
-#  length=$(echo $result | wc -c)
-#  echo -ne "HTTP/1.1 500 OK\nContent-Length: $length\n\n$result"
-#fi
+readonly result=$(gcloud compute instances list --project=$projectid --format='value(name)' 2>&1)
+echo -e "HTTP/1.1 200 OK\n\n$result"
