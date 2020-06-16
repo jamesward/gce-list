@@ -1,0 +1,12 @@
+{
+  "options": {
+    "memory": "512Mi"
+  },
+  "hooks": {
+    "precreate": {
+      "commands": [
+        ".gcloud/postcreate.sh"
+      ]
+    }
+  }
+}
