@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 declare project=$GOOGLE_CLOUD_PROJECT
 declare service=$K_SERVICE
 declare region=$GOOGLE_CLOUD_REGION
@@ -21,15 +23,15 @@ fi
 echo "allowing $sa to list GCE instances"
 gcloud projects add-iam-policy-binding $project \
   --member=serviceAccount:$sa \
-  --role=roles/compute.viewer &> /dev/null
+  --role=roles/compute.viewer
 
 echo "allowing $sa to be a serviceAccountUser"
 gcloud projects add-iam-policy-binding $project \
   --member=serviceAccount:$sa \
-  --role=roles/iam.serviceAccountUser &> /dev/null
+  --role=roles/iam.serviceAccountUser
 
 echo "updating $service to use the service account $sa"
 gcloud run services update $service \
   --platform=managed --project=$project --region=$region \
-  --service-account=$sa &> /dev/null
+  --service-account=$sa
 
